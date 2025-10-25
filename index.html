@@ -1,183 +1,129 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SheepFeeds — Nourishing the soul with the word</title>
-  <meta name="description" content="SheepFeeds — free Christian audios and devotionals. Nourishing the soul with the Word." />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SheepFeeds – Nourishing the Soul with the Word</title>
   <style>
-    :root{
-      --bg:#ffffff; --primary:#1f6feb; --muted:#6b7280; --accent:#0b5ed7;
-      --maxw:900px; --radius:12px; --gap:18px;
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #f8f9fa;
+      color: #222;
     }
-    *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{margin:0;background:var(--bg);color:#111;display:flex;justify-content:center;padding:28px}
-    .wrap{max-width:var(--maxw);width:100%}
 
-    header{display:flex;align-items:center;gap:14px}
-    .logo{width:62px;height:62px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#7aa7ff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:24px}
-    h1{margin:0;font-size:20px}
-    .tag{color:var(--muted);margin-top:6px}
+    header {
+      background: linear-gradient(to right, #4b6cb7, #182848);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
 
-    main{margin-top:22px;display:grid;grid-template-columns:1fr 300px;gap:24px}
-    .card{background:#fff;border-radius:var(--radius);padding:18px;box-shadow:0 6px 18px rgba(20,30,50,0.06)}
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
-    .audios h2,.diaries h2{margin:0 0 12px 0}
-    .audio-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px}
-    .audio-meta{flex:1}
-    .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;text-decoration:none;display:inline-block}
-    .small{font-size:13px;color:var(--muted)}
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
 
-    .player{margin-top:10px}
+    .section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-    aside .about-title{font-size:16px;margin-bottom:8px}
-    aside .links a{display:block;color:var(--primary);text-decoration:none;margin:6px 0}
+    .section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #182848;
+    }
 
-    footer{margin-top:22px;text-align:center;color:var(--muted);font-size:13px}
+    .sermon {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+    }
 
-    /* responsive */
-    @media(max-width:880px){main{grid-template-columns:1fr} .logo{width:54px;height:54px}}
+    .sermon h3 {
+      margin-top: 0;
+      color: #4b6cb7;
+    }
+
+    .sermon small {
+      color: #777;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    footer {
+      background-color: #182848;
+      color: white;
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 8px 0;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">SF</div>
-      <div>
-        <h1>SheepFeeds</h1>
-        <div class="tag">Nourishing the soul with the word</div>
-      </div>
-    </header>
+  <header>
+    <h1>SheepFeeds</h1>
+    <p>Nourishing the Soul with the Word</p>
+  </header>
 
-    <main>
-      <section>
-        <div class="card audios">
-          <h2>Latest Sermons & Messages</h2>
+  <section class="section">
+    <h2>Latest Sermons</h2>
 
-          <!-- Audio list is populated by JS. Add files to /audios folder and update the list below in the repo. -->
-          <div id="audioList">
-            <!-- sample fallback if JS disabled -->
-            <div class="audio-item">
-              <div class="audio-meta">
-                <div style="font-weight:600">Sample Sermon — Faith and Grace</div>
-                <div class="small">Uploaded: sample</div>
-              </div>
-              <div>
-                <a class="btn" href="/audios/sample-sermon.mp3" download>Download</a>
-              </div>
-            </div>
-          </div>
+    <div class="sermon">
+      <h3>The Power of Obedience</h3>
+      <small>By Pastor Israel Bethel • Oct 24, 2025</small>
+      <p>A powerful reminder about walking faithfully in obedience to God’s instructions.</p>
+      <audio controls>
+        <source src="audios/power-of-obedience.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
 
-          <div class="card player" id="playerCard" style="margin-top:12px;display:none">
-            <audio id="mainPlayer" controls style="width:100%"></audio>
-            <div id="playerMeta" class="small" style="margin-top:8px"></div>
-          </div>
-        </div>
+    <div class="sermon">
+      <h3>Walk by Faith</h3>
+      <small>By Pastor Israel Bethel • Oct 25, 2025</small>
+      <p>Faith isn’t a feeling — it’s a walk. This message stirs your confidence in God’s Word.</p>
+      <audio controls>
+        <source src="audios/walk-by-faith.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
+  </section>
 
-        <div class="card diaries" style="margin-top:18px">
-          <h2>Latest Devotionals</h2>
-          <div id="diaryList">
-            <!-- diaries populated by JS -->
-          </div>
-        </div>
-      </section>
+  <section class="section">
+    <h2>Daily Diaries</h2>
+    <div class="sermon">
+      <h3>Morning Reflection: The Shepherd’s Voice</h3>
+      <p>“My sheep hear my voice…” — Learning to recognize His leading in your daily life.</p>
+    </div>
 
-      <aside>
-        <div class="card">
-          <div class="about-title">About SheepFeeds</div>
-          <div class="small">SheepFeeds is a free Christian media hub — audios, devotionals and daily encouragements. Built to nourish the soul with the Word.</div>
+    <div class="sermon">
+      <h3>Evening Light: Rest in His Presence</h3>
+      <p>When the day ends, peace begins. Meditate on His Word before you rest.</p>
+    </div>
+  </section>
 
-          <div style="margin-top:12px" class="links">
-            <a href="#about" id="aboutLink">Read more about us</a>
-            <a href="mailto:thesheepfeeds@gmail.com">Contact (thesheepfeeds@gmail.com)</a>
-            <a href="#privacy">Privacy</a>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:16px">
-          <div style="font-weight:600;margin-bottom:8px">Quick Tips</div>
-          <div class="small">Share SheepFeeds on WhatsApp
-            or Facebook to grow. Add new audio weekly to keep returning visitors.</div>
-        </div>
-      </aside>
-    </main>
-
-    <footer>
-      © <span id="year"></span> SheepFeeds — Nourishing the soul with the word
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ========== CONTENT: edit these arrays inside the file or dynamically load from JSON ===========
-    const audios = [
-      {
-        id: 'faith-and-grace',
-        title: 'Faith and Grace',
-        file: '/audios/sample-sermon.mp3',
-        date: '2025-10-24',
-        description: 'A short message on faith and God\'s grace.'
-      }
-      // To add more, duplicate the object and change file path.
-    ];
-
-    const diaries = [
-      {
-        id: 'strength-in-weakness',
-        title: 'Strength in Weakness',
-        excerpt: 'When we are weak, His strength is revealed...',
-        file: '/diaries/sample-diary.md',
-        date: '2025-10-24'
-      }
-    ];
-
-    // populate audio list
-    const audioList = document.getElementById('audioList');
-    const playerCard = document.getElementById('playerCard');
-    const mainPlayer = document.getElementById('mainPlayer');
-    const playerMeta = document.getElementById('playerMeta');
-
-    function createAudioRow(a){
-      const div = document.createElement('div');
-      div.className = 'audio-item';
-
-      const meta = document.createElement('div'); meta.className = 'audio-meta';
-      meta.innerHTML = `<div style="font-weight:600">${a.title}</div><div class="small">Uploaded: ${a.date}</div>`;
-
-      const actions = document.createElement('div');
-      const play = document.createElement('a'); play.href = '#'; play.className='btn'; play.textContent='Play';
-      play.onclick = (e)=>{ e.preventDefault(); playAudio(a); };
-
-      const dl = document.createElement('a'); dl.href = a.file; dl.className='btn'; dl.style.marginLeft='8px'; dl.textContent='Download'; dl.setAttribute('download','');
-
-      actions.appendChild(play); actions.appendChild(dl);
-      div.appendChild(meta); div.appendChild(actions);
-      return div;
-    }
-
-    function playAudio(a){
-      mainPlayer.src = a.file; mainPlayer.play(); playerMeta.textContent = a.title + ' — ' + a.date + '\n' + (a.description || '');
-      playerCard.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
-    }
-
-    audios.forEach(a=> audioList.appendChild(createAudioRow(a)));
-
-    // populate diaries
-    const diaryList = document.getElementById('diaryList');
-    diaries.forEach(d=>{
-      const el = document.createElement('div'); el.style.padding='10px 0';
-      el.innerHTML = `<div style="font-weight:600">${d.title}</div><div class="small">${d.date}</div><div style="margin-top:6px">${d.excerpt}</div><a href="${d.file}" class="btn" style="margin-top:8px;display:inline-block">Read</a>`;
-      diaryList.appendChild(el);
-    });
-
-    // simple hash navigation for about/privacy
-    document.getElementById('aboutLink').addEventListener('click', function(e){ e.preventDefault(); showAbout(); });
-    function showAbout(){
-      alert('SheepFeeds\n\nSheepFeeds is a free Christian media hub: audios, devotionals and daily encouragements.\n\nContact: thesheepfeeds@gmail.com');
-    }
-  </script>
+  <footer>
+    <p>“The Lord is my shepherd; I shall not want.” – Psalm 23:1</p>
+    <p>📧 Contact: thesheepfeeds@gmail.com</p>
+    <p>© 2025 SheepFeeds. All rights reserved.</p>
+  </footer>
 </body>
-    </html>
-  
+  </html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sheepfeeds Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    #output {
+      background: #fff;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    button {
+      background-color: #0069d9;
+      color: white;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0053b0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎧 Sheepfeeds Editor</h1>
+
+  <label>Preacher's Name</label>
+  <input id="speaker" type="text" placeholder="e.g. Pastor Joshua David" />
+
+  <label>Message Title</label>
+  <input id="title" type="text" placeholder="e.g. The Voice of the Shepherd" />
+
+  <label>Description</label>
+  <textarea id="description" placeholder="Brief message summary..."></textarea>
+
+  <label>Date</label>
+  <input id="date" type="date" />
+
+  <label>Audio File (for reference only)</label>
+  <input id="audio" type="file" accept="audio/*" />
+
+  <label>Speaker Photo (optional)</label>
+  <input id="photo" type="file" accept="image/*" />
+
+  <button onclick="generate()">Generate Code</button>
+
+  <h3>Generated Code:</h3>
+  <div id="output">(Generated code will appear here)</div>
+
+  <script>
+    function generate() {
+      const speaker = document.getElementById("speaker").value.trim();
+      const title = document.getElementById("title").value.trim();
+      const description = document.getElementById("description").value.trim();
+      const date = document.getElementById("date").value || new Date().toISOString().split('T')[0];
+      const audio = document.getElementById("audio").files[0];
+      const photo = document.getElementById("photo").files[0];
+
+      if (!speaker || !title || !audio) {
+        alert("Please fill in at least the Speaker, Title, and choose an Audio file.");
+        return;
+      }
+
+      const fileName = audio.name.replace(/\s+/g, '_');
+      const speakerId = speaker.toLowerCase().replace(/\s+/g, '-');
+
+      const json = {
+        title,
+        description,
+        speaker,
+        date,
+        file: `audios/${fileName}`
+      };
+
+      const speakerJson = {
+        id: speakerId,
+        name: speaker,
+        photo: photo ? `images/${photo.name}` : ""
+      };
+
+      const code = `
+📦 Add this entry to audios.json:
+${JSON.stringify(json, null, 2)}
+
+👤 If new speaker, add this to speakers.json:
+${JSON.stringify(speakerJson, null, 2)}
+
+📝 Upload audio to: audios/${fileName}
+${photo ? `📷 Upload photo to: images/${photo.name}` : ""}
+`;
+
+      document.getElementById("output").innerText = code;
+    }
+  </script>
+</body>
+</html>

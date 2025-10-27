@@ -1,0 +1,14 @@
+[
+  {
+    "id": "pastor-joshua-david",
+    "name": "Pastor Joshua David",
+    "photo": "images/joshua.jpg",
+    "bio": "A passionate teacher of the Word and minister of truth."
+  },
+  {
+    "id": "rev-wonderful-uche",
+    "name": "Rev. Wonderful Uche",
+    "photo": "images/wonderful.jpg",
+    "bio": "A servant of God with a deep insight into grace and obedience."
+  }
+]

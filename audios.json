@@ -1,0 +1,16 @@
+{
+  "title": "Help me response to your call",
+  "description": "Prayer song",
+  "speaker": "Theophilus Sunday",
+  "date": "2025-10-27",
+  "file": "audios/FB_IMG_17514486587167018.jpg"
+}
+
+👤 If new speaker, add this to speakers.json:
+{
+  "id": "theophilus-sunday",
+  "name": "Theophilus Sunday",
+  "photo": ""
+}
+
+📝 Upload audio to: audios/FB_IMG_17514486587167018.jpg

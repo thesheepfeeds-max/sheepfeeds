@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speaker | The Sheepfeeds</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="speaker-name">Shepherd</h1>
+    <p>Messages and Teachings</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shepherds.html">Shepherds</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="sermons">
+      <h2>Sermons by <span id="name-display"></span></h2>
+      <div id="sermon-list" class="sermon-grid">Loading sermons...</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Sheepfeeds. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const speakerName = urlParams.get("name");
+    document.getElementById("speaker-name").textContent = speakerName;
+    document.getElementById("name-display").textContent = speakerName;
+
+    async function loadSermons() {
+      try {
+        const [audiosRes, speakersRes] = await Promise.all([
+          fetch("data/audios.json"),
+          fetch("data/speakers.json")
+        ]);
+
+        const audios = await audiosRes.json();
+        const speakers = await speakersRes.json();
+
+        const sermonList = document.getElementById("sermon-list");
+        sermonList.innerHTML = "";
+
+        const filtered = audios.filter(a => a.speaker === speakerName);
+        const speaker = speakers.find(s => s.name === speakerName);
+        const imgSrc = speaker && speaker.photo ? speaker.photo : "images/default.jpg";
+
+        if (filtered.length === 0) {
+          sermonList.innerHTML = `<p>No sermons found for ${speakerName}.</p>`;
+          return;
+        }
+
+        filtered.reverse().forEach(audio => {
+          const div = document.createElement("div");
+          div.className = "sermon-card";
+          div.innerHTML = `
+            <img src="${imgSrc}" alt="${audio.speaker}">
+            <h3>${audio.title}</h3>
+            <p><strong>${audio.speaker}</strong></p>
+            <p class="desc">${audio.description || ""}</p>
+            <audio controls>
+              <source src="${audio.file}" type="audio/mpeg">
+            </audio>
+            <small>${audio.date}</small>
+          `;
+          sermonList.appendChild(div);
+        });
+      } catch (err) {
+        document.getElementById("sermon-list").innerText = "⚠️ Failed to load sermons.";
+        console.error(err);
+      }
+    }
+
+    loadSermons();
+  </script>
+</body>
+</html>
